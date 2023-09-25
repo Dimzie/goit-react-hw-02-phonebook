@@ -6,10 +6,10 @@ import ContactsList from './ContactsList/ContactsList';
 export class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      // { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      // { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      // { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
   };
@@ -56,14 +56,23 @@ export class App extends Component {
           onAddContact={this.onAddContact}
           contacts={this.state.contacts}
         />
-        <h2>Search for contact:</h2>
-        <input
-          onChange={this.onInputChange}
-          type="text"
-          value={this.state.filter}
-          name="filter"
-        />
-        <ContactsList visibleContacts={visibleContacts} onDeleteContact={this.onDeleteContact}/>
+        {this.state.contacts.length === 0 ? (
+          <p>Your contact book is empty!</p>
+        ) : (
+          <>
+            <h2>Search for contact:</h2>
+            <input
+              onChange={this.onInputChange}
+              type="text"
+              value={this.state.filter}
+              name="filter"
+            />
+            <ContactsList
+              visibleContacts={visibleContacts}
+              onDeleteContact={this.onDeleteContact}
+            />
+          </>
+        )}
       </>
     );
   }
